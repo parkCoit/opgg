@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import User from '../User'
 import './Summoner.css'
 import { Nav } from 'react-bootstrap'
  
 function Summoner() {
+
+    let [tab, setTab] = useState(0)
+
     return(
         <div>
             <User/>
@@ -19,9 +23,9 @@ function Summoner() {
                     <div className='bg-gray-top history-header'>
                         <div>
                             <Nav className="active" variant='tabs' defaultActiveKey='rank-1'  >
-                                <Nav.Link className='nav-link' eventKey='rank-1'>전체</Nav.Link>
-                                <Nav.Link eventKey='rank-2'>솔로랭크</Nav.Link>
-                                <Nav.Link eventKey='rank-3'>자유랭크</Nav.Link>
+                                <Nav.Link className='nav-link' eventKey='rank-1' onClick={() => {setTab(0)}} >전체 {tab} </Nav.Link>
+                                <Nav.Link eventKey='rank-2' onClick={() => {setTab(1)}}>솔로랭크</Nav.Link>
+                                <Nav.Link eventKey='rank-3' onClick={() => {setTab(2)}}>자유랭크</Nav.Link>
                                 
                                 <select className='select-gray'>
                                     <option> 큐 타입 </option>

@@ -7,7 +7,7 @@ import axios from 'axios'
  
 function User() {
 
-    const api_key = 'RGAPI-6fa097f9-21d0-4e62-bacc-0819caca80c3'
+    const api_key = 'RGAPI-387aa169-e867-41fc-9a50-651c86cb650f'
 
     let user = JSON.parse(localStorage.getItem('summoner'))
 
@@ -21,14 +21,18 @@ function User() {
         axios.get(`/riot/account/v1/accounts/by-riot-id/${user['name']}/${user['tag']}?api_key=${api_key}`)
             .then(state => { 
                 setPuuid(state.data['puuid'])
+                console.log(state.data)
                 })
             .catch(a => { return(a.data) })
         
-    }, [])
+    }, [user])
 
     useEffect(() => {
         axios.get(`/lol/match/v5/matches/by-puuid/${puuid}/ids?api_key=${api_key}`)
-                            .then((state) => { setMatch_id(state.data) })
+                            .then((state) => { 
+                                setMatch_id(state.data)
+                                console.log(state.data)
+                             })
                             .catch(a => { return(a.data) })
     }, [puuid])
 
@@ -57,6 +61,7 @@ function User() {
                         <Nav.Link className='nav-box px-3' eventKey="ingame" href={`/summoner/${region}/${name}/ingame`}  >인게임 정보</Nav.Link>
                     </Nav.Item>
                 </Nav>
+                {match_id}
             
             </div>
         </div>
