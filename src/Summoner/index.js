@@ -1,22 +1,45 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import User from '../User'
 import './Summoner.css'
 import { Nav } from 'react-bootstrap'
+import useUserHistory from '../hooks/useUserHistory'
  
 function Summoner() {
 
+    const api_key = 'RGAPI-690a05a5-589d-4e80-936a-c604d9b80fbb'
+
     let [tab, setTab] = useState(0)
+
+    const {summoner, history , isLoading} = useUserHistory(api_key)
+
+    // console.log('summoner1212 :', summoner)
+    // console.log('history : ', history)
+
+    const tierSrc = `https://opgg-static.akamaized.net/images/medals_new/${summoner.tier}.png?image=q_auto,f_webp,w_144&v=1700641403304`
+   
+    console.log(summoner.tier)
+    useEffect(()=>{
+        if(!isLoading) { 
+            console.log(summoner)
+        }
+    },[isLoading, summoner])
 
     return(
         <div>
-            <User/>
+            <User summoner={summoner} />
             <div className='header'>
                 <div className='side-bar'>
                     <div className='bg-gray-top bar-header'>
                         솔로랭크
                     </div>
-                    <div className='bg-gray-bottom'>
-                        ㅇㅇ
+                    <div className='bg-gray-bottom content'>
+                        <div className='rank'>
+                            <img width='72px' src={tierSrc} alt='tier' />
+                        </div>
+                        <div className='info2'>
+                            <div className='tier'>{summoner.tier}</div>
+                            <div className='lp'>{summoner.leaguePoints} LP</div>
+                        </div>
                     </div>
                 </div>
                 <div className='history'>
@@ -37,13 +60,37 @@ function Summoner() {
 
                         <div className='search'>
                             <img className='search-img' src="https://s-lol-web.op.gg/images/icon/icon-search.svg?v=1700641403304" alt="search"></img>
-                            <label className='hidden' htmlFor='chmpionInput'>챔피언 선택</label>
-                            <input className='chmpionInput' name='chmpionInput' placeholder='챔피언 검색'/>
+                            <label className='hidden' htmlFor='championInput'>챔피언 선택</label>
+                            <input className='championInput' name='championInput' placeholder='챔피언 검색'/>
                         </div>
                     </div>
-                    <div className='bg-gray-bottom'>
-                        asd
-                    </div>
+
+                    {
+                        history.results && history.results.map((data, i) => {
+                            if (data === true) {
+                                data = '승리'
+                            }
+                            else {
+                                data = '패배'
+                            }
+
+                            return(
+                                    <div key={i} className='bg-gray-bottom stats-box'>
+                                        <div>
+                                            <div className='text'>솔랭</div>
+                                            <div className='text'>{data }</div>
+                                            <div className='text'>23분11초</div>
+                                        </div>
+                                        <div>
+                                            <div>{history.champions[i]}</div>
+                                            <div>{history.kills[i]}/{history.deaths[i]}/{history.assists[i]}</div>
+                                        </div>
+                                        <div> 
+                                        </div>
+                                    </div>
+                                )
+                        })
+                    }
                 </div>
             </div>
         </div>

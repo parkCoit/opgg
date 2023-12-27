@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-function History() {
+function history() {
 
         let [uuid , setUuid] = useState('')
 
@@ -28,10 +28,12 @@ function History() {
         // let match_id  = axios.get(`/lol/match/v5/matches/by-puuid/${puuid}/ids?api_key=${api_key}`)
         //                     .then((state) => {return(state.data)})
         //                     .catch(a => { return(a.data) })
-        return(localStorage.setItem('history', [{user : user['name'], puuid : uuid, summoner : summoner , match_id : match_id}]))
+        // return(localStorage.setItem('history', [{user : user['name'], puuid : uuid, summoner : summoner , match_id : match_id}]))
+
+        
         
 }
 
 
-export default History
+export default history
 

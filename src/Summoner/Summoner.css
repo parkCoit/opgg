@@ -4,8 +4,40 @@
     height: 100%;
     flex-direction: row;
     justify-items: flex-start;
-    align-items: center;
-    margin: 0 27px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    width: 100%;
+}
+
+.rank {
+    background-color: #282830;
+    vertical-align: middle;
+    border-radius: 50%;
+    max-width: 100%;
+}
+
+.info2 {
+    display: flex;
+    margin-left: 16px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tier {
+   font-size: 20px;
+   line-height: 26px;
+   font-weight: bold
+}
+.lp {
+    line-height: 16px;
+    margin-top: 2px;
+    font-size: 12px;
+    text-align: left;
+    color: #9e9eb1;
 }
 
 .side-bar {
@@ -87,7 +119,16 @@
     height: 24px;
 }
 
-.chmpionInput {
+.championInput {
     width: 100%;
-    
+}
+
+.stats-box {
+    display: flex;
+}
+
+.text {
+    font-size: 14px;
+    text-align: left;
+    margin-left: 12px;
 }

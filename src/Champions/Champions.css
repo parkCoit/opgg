@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    color: white;
+    flex-direction: row;
+    background-color: #424254;
+}
+
+.articleList {
+    min-width: 300px;
+}
+
+.bg-white {
+    background-color: white;
+    color: black;
+}

@@ -2,9 +2,15 @@
   text-align: center;
 }
 
-.logo {
+
+.logo-header {
+  display: flex;
   width: 80px;
   height: 40px;
+}
+
+.login {
+  margin-left: auto;
 }
 
 .bar {

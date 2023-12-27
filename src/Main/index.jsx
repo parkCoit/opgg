@@ -1,5 +1,5 @@
 import './Main.css'
-import { useState, useEffect } from 'react'
+import { useState,  } from 'react'
 
 function Main() {
 
