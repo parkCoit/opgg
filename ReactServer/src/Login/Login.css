@@ -1,0 +1,26 @@
+body {
+    background-color: white;
+}
+
+.login {
+    color : black;
+}
+
+.bg-white {
+    border: solid 1px black;
+    
+}
+
+.mg-rt10 {
+    margin-right: 10px;
+    min-width: 70px;
+}
+
+.mg-bt10 {
+    margin-bottom: 10px;
+}
+
+.button-bg {
+    background-color: #6180ff;
+}
+
