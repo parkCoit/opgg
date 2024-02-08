@@ -3,20 +3,30 @@ import User from '../User'
 import './Summoner.css'
 import { Nav } from 'react-bootstrap'
 import useUserHistory from '../hooks/useUserHistory'
+import { historyData } from '../api'
  
 function Summoner() {
 
-    const api_key = 'RGAPI-334ce6ce-df40-4d8a-9eca-d6ef646b1c2a'
+    const api_key = 'RGAPI-7e1085af-49af-46ec-8e62-adc761942c32'
 
     let [tab, setTab] = useState(0)
 
     const {summoner, history , isLoading} = useUserHistory(api_key)
+    
 
     const tierSrc = `https://opgg-static.akamaized.net/images/medals_new/${summoner.tier}.png?image=q_auto,f_webp,w_144&v=1700641403304`
    
     useEffect(()=>{
         if(!isLoading) { 
             console.log(summoner)
+            historyData(summoner)
+            .then((res) => {
+                alert(JSON.stringify(res.data))
+                localStorage.setItem('historyData', JSON.stringify(res.data))
+            })
+            .catch((err) =>{
+                alert(err)
+            })
         }
     },[isLoading, summoner])
 

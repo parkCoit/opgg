@@ -38,7 +38,7 @@ const useUserHistory = (api_key) => {
                 summonerInfo.losses = tierData['losses']
                 setSummoner(summonerInfo)
                 console.log(summonerInfo)
-                // console.log(riotIdData.data)
+                console.log(riotIdData.data)
                 // console.log(riotSummonerData.data)
                 // console.log(riotTierData.data[0])
                 const matchIdData = await axios.get(`/lol/match/v5/matches/by-puuid/${riotIdData?.data['puuid']}/ids?type=ranked&api_key=${api_key}`)

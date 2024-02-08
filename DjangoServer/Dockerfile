@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.12
 
 WORKDIR /app
 
@@ -15,5 +15,5 @@ RUN pip install -U imbalanced-learn
 RUN pip install mysqlclient
 RUN pip install -U pip wheel cmake
 RUN pip install -r requirements.txt
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000", "--poll=500"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 EXPOSE 8000

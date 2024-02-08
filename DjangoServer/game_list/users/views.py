@@ -15,14 +15,15 @@ from rest_framework.response import Response
 @api_view(['GET', 'DELETE'])
 def users(request):
     print(f"data ::: {request.GET}"
-          f"request data ::: {request.GET['name']}")
-    tag = request.GET['tag']
-    nickname = request.GET['name']
+          f"request data ::: {request.GET}")
+    tag = request.GET['tagLine']
+    nickname = request.GET['gameName']
+    puuid = request.GET['puuid']
     if request.method == "GET":
         if UserRepository().find_user_exists(nickname) is not False:
             return Response(UserRepository().find_user(nickname)[0])
         else:
-            summonerData = UserServices().summonerData(gameName=nickname, tag=tag)
+            summonerData = UserServices().summonerData(riot_id=puuid, gameName=nickname, tag=tag)
             serializer = UserSerializer(data=summonerData)
             if serializer.is_valid():
                 serializer.save()

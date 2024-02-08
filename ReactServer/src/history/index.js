@@ -17,21 +17,7 @@ function history() {
                         setUuid(state.data['puuid'])
                         })
                     .catch(a => { return(a.data) })
-
-        // let summoner = axios.get(`/lol/summoner/v4/summoners/by-puuid/${uuid}?api_key=${api_key}`)
-        //                 .then((state) => {state.data})
-        //                 .catch(a => {
-        //                     return(a.data)
-        //                 })
-        
-
-        // let match_id  = axios.get(`/lol/match/v5/matches/by-puuid/${puuid}/ids?api_key=${api_key}`)
-        //                     .then((state) => {return(state.data)})
-        //                     .catch(a => { return(a.data) })
-        // return(localStorage.setItem('history', [{user : user['name'], puuid : uuid, summoner : summoner , match_id : match_id}]))
-
-        
-        
+    
 }
 
 

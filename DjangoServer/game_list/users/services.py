@@ -40,8 +40,9 @@ class UserServices(object):
 
         return {'nickname': nickname, 'puuid': puuid}
 
-    def summonerData(self, gameName, tag):
-        summonerData = watcher.summoner.by_name(my_region, gameName)
+    def summonerData(self, riot_id, gameName, tag):
+        summonerData = watcher.summoner.by_puuid(my_region, riot_id)
+        # summonerData = watcher.summoner.by_name(my_region, gameName)
         tierData = watcher.league.by_summoner(my_region, summonerData['id'])
         tierData = [tierData[i] for i in range(len(tierData)) if tierData[i]['queueType'] == 'RANKED_SOLO_5x5'][0]
         nickname = summonerData['name']

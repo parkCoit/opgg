@@ -3,4 +3,4 @@ from sqlalchemy import create_engine
 
 
 ENGINE = create_engine(DB_URL, encoding=CHARSET, echo=True)
-CONN = ENGINE.connect()
+conn = ENGINE.connect()

@@ -19,6 +19,7 @@ function User(props) {
         const request = props.summoner
         historyUpdate(request)
         .then((res) => {
+            alert(res.data)
             alert(JSON.stringify(res.data))
         })
         .catch((err) => {

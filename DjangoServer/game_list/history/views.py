@@ -26,5 +26,4 @@ def history(request):
 
 @api_view(['GET'])
 def history_get(request):
-
     return HistoryRepository().get_all()

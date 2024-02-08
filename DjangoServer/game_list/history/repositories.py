@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from game_list.history.models import History
 from game_list.history.serializers import HistorySerializer
 from game_list.history.services import HistoryServices
-from admin.databases import ENGINE
+from admin.databases import ENGINE, conn
 
 
 class HistoryRepository(object):
@@ -21,8 +21,15 @@ class HistoryRepository(object):
 
     def add_history(self, nickname):
         data = HistoryServices().play_list(nickname)
-        data.to_sql(name='history', con=ENGINE, if_exists='append', index=False)
+        # print(data)
+        # for i in data :
+        #     print(i)
+        #     serializer = HistorySerializer(data=i)
+        #     if serializer.is_valid():
+        #         serializer.save()
+        # data.to_sql(name='history', con=conn, if_exists='append', index=False)
         return self.find_history(nickname)
+
 
     def delete_history(self, nickname):
         History.objects.all().filter(nickname=nickname).delete()

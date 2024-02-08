@@ -1,4 +1,4 @@
-HOSTNAME = 'localhost'
+HOSTNAME = 'host.docker.internal'
 PORT = 3306
 USERNAME = 'root'
 PASSWORD = 'root'

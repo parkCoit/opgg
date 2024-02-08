@@ -4,7 +4,7 @@ const server = `http://localhost:8000`
 export const kakaoLoginData = req =>  axios.post(`${server}/kakao/login`, req)
 export const summonerData = req => {
     console.log('req : ',req)
-    return axios.get(`${server}/gameList/users`, {
+    return axios.get(`${server}/gameList/users/`, {
         params : req
     })
 }

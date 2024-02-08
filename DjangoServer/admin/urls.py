@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 import kakao
 from admin.views import hello
@@ -25,4 +26,7 @@ urlpatterns = [
     path('gameList/users/', include('game_list.users.urls')),
     path('kakao/', include('kakao.urls')),
     path('admin/', admin.site.urls),
+    path('api-jwt-auth/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api-jwt-auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api-jwt-auth/verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]

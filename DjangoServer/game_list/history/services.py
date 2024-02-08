@@ -93,10 +93,12 @@ class HistoryServices(object):
                       f'닉네임 : {summoner_name}\n')
         db_df = pd.DataFrame({'match_id' : match_id_ls, 'champions': champion_name_ls, 'results': result_ls, 'kills': kills_ls,
                     'deaths': deaths_ls, 'assists': assists_ls, 'kda' : kda_ls, 'position': position_ls, 'nickname_id': summoner_name_ls }, index=match_id_ls)
-        print(db_df)
+        # print(db_df)
         json = db_df.to_json(orient='records', force_ascii=False)
-        print(json)
-        return db_df
+        # print(json)
+        result = [{'match_id' : match_id_ls[i], 'champions': champion_name_ls[i], 'results': result_ls[i], 'kills': kills_ls[i],
+                    'deaths': deaths_ls[i], 'assists': assists_ls[i], 'kda' : kda_ls[i], 'position': position_ls[i], 'nickname_id': summoner_name_ls[i] } for i in range(len(match_id_ls))]
+        return result
 
     def match_list(self):
         pass
@@ -133,6 +135,6 @@ if __name__ == '__main__':
     puuid = name['puuid']
     HistoryServices().summonerData('망뭉망뭉망')
     # match_id = Name().match_id(name['puuid'])
-    # Name().play_list(puuid)
+    HistoryServices().play_list('망뭉망뭉망')
     # Name().all_death_time(match_id[0])
     # Name().user_death_time(match_id[0], puuid)

@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react"
 import { kakaoLoginData } from "../api";
+import base64 from 'base-64';
 
 
 function LoginAuth () {
 
-    const [data, setData] = useState()
+    const [token, setToken] = useState()
+    const [user, setUser] = useState()
 
-    const getData = async (code) => {
+    const getData = async (data) => {
         try{
-            await kakaoLoginData(code)
+            await kakaoLoginData(data)
             .then((res) => {
                 console.log('then 이에요 ')
-                alert(res.data)
+                setToken(res.data)
+                let resData = res.data
+                alert(JSON.stringify(res.data))
+                console.log(typeof(res.data))
+                let payload = resData.substring(resData.indexOf('.')+1,resData.lastIndexOf('.'))
+                console.log(base64.decode(payload))
+                setUser(base64.decode(payload))
                 return res.data
             })
             .catch((err) => {
                 console.log('catch 에요 ')
-                alert(err.data)
-                return err.data 
+                alert(err)
+                return err
             })
         }
         catch (err) {
@@ -28,18 +36,18 @@ function LoginAuth () {
     const onclick = e => {
         e.preventDefault()
         const code = new URL(window.location.href).searchParams.get("code");
-        kakaoLoginData(code)
+        kakaoLoginData({"code" : code})
         .then((res) => {
             alert(JSON.stringify(res.data))
         })
         .catch((err) => {
-            alert(err.data) 
+            alert(err) 
         })
     }
 
     useEffect(() => {
         const code = new URL(window.location.href).searchParams.get("code");
-        getData(code);
+        getData({'code' : code});
     }, []);
 
 
@@ -48,6 +56,8 @@ function LoginAuth () {
         <div>
             로그인중
             <button onClick={onclick}>버튼</button>
+            {user}
+            {token}
         </div>
     )
 }

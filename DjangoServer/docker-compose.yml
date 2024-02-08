@@ -28,7 +28,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/mydj
+      - .:/app
       - /tmp/mydb/mysqld:/run/mysqld
     expose:
       - "8000"

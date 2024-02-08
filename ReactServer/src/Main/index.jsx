@@ -1,22 +1,29 @@
 import './Main.css'
-import { useState,  } from 'react'
-import { summonerData } from '../api'
+import { useState } from 'react'
+import { summonerData, historyData } from '../api'
+import useUserHistory from '../hooks/useUserHistory'
+
 
 function Main() {
 
     let [data, setData] = useState({region : 'kr'})
 
+    const api_key = 'RGAPI-7e1085af-49af-46ec-8e62-adc761942c32'
+
+    const {summoner} = useUserHistory(api_key)
+
     const handleSubmitButton = (e) => {
         e.preventDefault()
-        summonerData(data)
+        summonerData(summoner)
         .then((res) => {
             alert(JSON.stringify(res.data))
-
+            localStorage.setItem('summonerData', JSON.stringify(res.data))
         })
         .catch((err) =>{
             alert(err)
         })
-        alert(JSON.stringify(data))
+        
+        
         console.log(data)
         console.log('e : ',e?.target)
         localStorage.setItem('summoner' , JSON.stringify(data))
